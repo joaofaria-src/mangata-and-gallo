@@ -1,38 +1,151 @@
-.App {
-  text-align: center;
+/* Reset margins and padding */
+body, html {
+    margin: 0;
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Header styling */
+header {
+    text-align: center;
+    margin-top: 20px; 
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Logo styling */
+header img { 
+    max-width: 50%; 
+    height: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Navigation styling */
+nav {
+    text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+
+ul {
+    list-style-type: none;
+    margin: 15px 0;
+    padding: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+li {
+    font-size: 3ch;
+    display: inline;
 }
+
+/* Anchor tag styling */
+li a {
+    display: inline-block;
+    padding: 15px 20px; 
+    color: black;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+/* Anchor tag hover styling */
+li a:hover {
+    background-color: #f0f0f0; 
+    color: #333; 
+}
+
+/* Main content styling */
+.main {
+    display: grid;
+    gap: 20px; 
+}
+
+/* Banner image styling */
+.banner img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Item container styling */
+.item-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; 
+    padding: 20px; 
+}
+
+/* Individual item styling */
+.service {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9dada;
+}
+
+/* Heading 1 styling */
+.item h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 2.5ch; 
+}
+
+/* Paragraph styling */
+.item p {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 10px; 
+    line-height: 1.5; 
+}
+
+/* Image styling */
+.item img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Footer styling */
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; 
+    padding: 20px; 
+}
+
+/* Footer logo image styling */
+.footerlogo img {
+    width: 50%; 
+}
+
+/* Copyright text styling */
+.copywright {
+    width: 50%; 
+    text-align: right; 
+    border-top: 1px solid black; /* Top border */
+    padding-top: 20px; 
+}
+
+/* Media queries */
+@media screen and (max-width: 720px) {
+    header img {
+        max-width: 100%; /* Full width for smaller screens */
+    }
+
+    nav {
+        overflow-x: auto; /* Horizontal scroll for small screens */
+    }
+
+    li {
+        font-size: 2.5ch; /* Adjusted font size for smaller screens */
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    li a {
+        padding: 10px 15px; /* Adjusted padding for smaller screens */
+    }
+
+    .item-container {
+        grid-template-columns: repeat(1, 1fr); /* Single column layout for small screens */
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .banner img {
+        width: 100%; /* Full width for larger screens */
+    }
+}
+
