@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaPhone, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
 
 function Contact() {
   // State variables for form fields
@@ -66,11 +67,19 @@ function Contact() {
       </div>
       <div className="pink-container contact-info-container">
         <h2>Contact Us</h2>
-        <p>Visit us at:</p>
-        <p>1234 Magnolia Avenue</p>
-        <p>Springfield, MA 12345</p>
-        <p>Email: info@mangataandgallo.com</p>
-        <p>Phone: (123) 456-7890</p>
+        <div className="contact-info">
+          <div className="icon"><FaMapMarkerAlt /></div>
+          <p>1234 Magnolia Avenue</p>
+          <p>Springfield, MA 12345</p>
+        </div>
+        <div className="contact-info">
+          <div className="icon"><FaEnvelope /></div>
+          <p>Email: info@mangataandgallo.com</p>
+        </div>
+        <div className="contact-info">
+          <div className="icon"><FaPhone /></div>
+          <p>Phone: (123) 456-7890</p>
+        </div>
       </div>
       <div className="map-container pink-container">
         <iframe

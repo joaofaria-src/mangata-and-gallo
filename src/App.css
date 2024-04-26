@@ -22,6 +22,7 @@ nav {
     background-color: #f9dada;
     padding: 10px;
     text-align: center;
+    margin-top: 20px;
 }
 
 .header-wrapper {
@@ -292,6 +293,7 @@ ul li a:hover {
     padding: 20px;
     background-color: #f9dada;
     border-radius: 10px;
+    text-align: center;
 }
 
 .contact-form-container h2,
@@ -310,14 +312,14 @@ ul li a:hover {
 .contact-form input,
 .contact-form textarea,
 .contact-form button {
-    width: 100%;
-    padding: 10px;
+    width: calc(100% - 20px); /* Adjusted width to consider padding */
+    padding: 8px; /* Reduced padding */
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 .contact-form textarea {
-    height: 100px;
+    height: 80px; /* Reduced height */
 }
 
 .contact-form button {
