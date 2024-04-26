@@ -1,9 +1,11 @@
 import React from "react";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
+import About from "./About";
 import Service from "./Service";
-import { BrowserRouter, Link} from "react-router-dom";
-import logo from "./logos/Asset 2@3x.png"; 
-import bannerImage from "./images/ring.jpg";
+import Contact from "./Contact"
+import Banner from "./Banner";
+import logo from "./logos/Asset 2@3x.png";
 
 function Header() {
   return (
@@ -18,16 +20,16 @@ function Navigation() {
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link> 
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="#gallery">Gallery</Link> 
+          <Link to="#gallery">Gallery</Link>
         </li>
         <li>
-          <Link to="#contact">Contact</Link> 
+          <Link to="/contact">Contact</Link>
         </li>
         <li>
-          <Link to="#about">About</Link> 
+          <Link to="/about">About</Link>
         </li>
       </ul>
     </nav>
@@ -37,12 +39,9 @@ function Navigation() {
 function Main() {
   return (
     <main>
+      <Banner />
       <section className="main">
-        <div className="banner">
-          <img src={bannerImage} alt="Banner" />
-        </div>
         <section className="item-container">
-          {/* Use the Service component for each item */}
           <Service
             title="Symbolize Your Love with Timeless Elegance"
             description="Celebrate your love with our exquisite engagement rings, meticulously crafted to symbolize your unique bond. From timeless solitaires to dazzling halos, our collection offers something for every style and budget. Begin your journey together with a symbol of enduring commitment and beauty. Explore our range today and find the perfect ring to capture your love story."
@@ -80,7 +79,11 @@ function App() {
       <div className="App">
         <Header />
         <Navigation />
-        <Main />
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/" element={<Main />} />
+        </Routes>
         <Footer />
       </div>
     </BrowserRouter>
