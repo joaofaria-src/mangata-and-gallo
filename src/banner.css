@@ -1,0 +1,47 @@
+.banner-container {
+    padding: 20px;
+    background-color: #f9dada;
+    border-radius: 10px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  }
+  
+  .banner-content {
+    text-align: center; /* Center align text */
+  }
+  
+  .banner-text {
+    position: relative;
+  }
+  
+  .banner-text h2 {
+    font-size: 3em;
+    color: #fff;
+    margin: 0;
+  }
+  
+  .glow-text {
+    animation: glowGradient 4s infinite linear;
+  }
+  
+  @keyframes glowGradient {
+    0% {
+      text-shadow: 0 0 10px white;
+    }
+    25% {
+      text-shadow: 0 0 20px white, 0 0 20px #ffd700;
+    }
+    50% {
+      text-shadow: 0 0 30px white, 0 0 30px #ffd700;
+    }
+    75% {
+      text-shadow: 0 0 20px white, 0 0 20px #ffd700;
+    }
+    100% {
+      text-shadow: 0 0 10px white;
+    }
+  }
+  

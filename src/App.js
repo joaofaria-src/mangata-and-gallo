@@ -1,38 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap";
 import "./App.css";
 import About from "./About";
 import Service from "./Service";
-import Contact from "./Contact"
+import Contact from "./Contact";
 import Banner from "./Banner";
 import logo from "./logos/Asset 2@3x.png";
 
-function Header() {
-  return (
-    <header>
-      <img src={logo} alt="Logo" width="50%" height="auto" />
-    </header>
-  );
-}
-
 function Navigation() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="#gallery">Gallery</Link>
-        </li>
-        <li>
-          <Link to="/contact">Contact</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
-    </nav>
+    <Navbar expand="lg" className="navbar">
+      <Navbar.Brand href="/">
+        <img src={logo} className="navbar-logo" alt="Company Logo" />
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={toggleMenu} />
+      <Navbar.Collapse id="basic-navbar-nav" className={isMenuOpen ? "show" : ""}>
+        <Nav className="ml-auto">
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
+          <Link className="nav-link" to="#gallery">
+            Gallery
+          </Link>
+          <Link className="nav-link" to="/contact">
+            Contact
+          </Link>
+          <Link className="nav-link" to="/about">
+            About
+          </Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
 
@@ -41,7 +46,7 @@ function Main() {
     <main>
       <Banner />
       <section className="main">
-        <section className="item-container">
+        <section className="card-container">
           <Service
             title="Symbolize Your Love with Timeless Elegance"
             description="Celebrate your love with our exquisite engagement rings, meticulously crafted to symbolize your unique bond. From timeless solitaires to dazzling halos, our collection offers something for every style and budget. Begin your journey together with a symbol of enduring commitment and beauty. Explore our range today and find the perfect ring to capture your love story."
@@ -63,12 +68,7 @@ function Main() {
 function Footer() {
   return (
     <footer>
-      <div className="footer">
-        <div className="footerlogo">
-          <img src={logo} alt="Logo" />
-        </div>
-        <div className="copywright">© 2024 Mangata & Gallo</div>
-      </div>
+      <div className="copyright">© 2024 Mangata & Gallo</div>
     </footer>
   );
 }
@@ -77,7 +77,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
         <Navigation />
         <Routes>
           <Route path="/about" element={<About />} />
