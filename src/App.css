@@ -11,9 +11,9 @@ html {
 }
   
   .navbar-nav {
-    position: absolute; /* Position the navbar items */
-    left: 50%; /* Move items to the center horizontally */
-    transform: translateX(-50%); /* Adjust for the item's width */
+    position: absolute; 
+    left: 50%; 
+    transform: translateX(-50%); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,8 +66,20 @@ html {
 @media screen and (max-width: 1380px){
     .navbar-logo {
         height: 27px;
+        transition: height 0.3s ease;
       }
   }
+
+  @media screen and (max-width: 409px) {
+    .navbar-toggler {
+        top: auto; /* Reset top position */
+        bottom: 0; /* Align it to the bottom */
+    }
+
+    .navbar-logo {
+        text-align: center;
+      }
+}
 
 /* Main content styling */
 .main {
