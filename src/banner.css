@@ -1,47 +1,90 @@
 .banner-container {
-    padding: 20px;
-    background-color: #f9dada;
-    border-radius: 10px;
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  position: relative;
+  height: 40vh; /* Adjusted height to 40% of the viewport height */
+  overflow: hidden;
+  margin: 5vh auto; /* Adjusted margin to 5% of the viewport height on top and bottom */
+  padding: 5vw; /* Adjusted padding to 5% of the viewport width */
+}
+
+.banner-video {
+  position: absolute;
+  top: -80%; /* Adjusted top value to pull the video content up */
+  left: 0;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 5%; /* Adjusted left position */
+  transform: translateY(-90%);
+  z-index: 3; /* Ensure text appears above video */
+}
+
+.banner-text h2 {
+  font-size: 3em;
+  margin: 0;
+  color: white; /* Set text color to white */
+}
+
+.glow-text {
+  animation: glowGradient 4s infinite linear;
+}
+
+@keyframes glowGradient {
+  0% {
+    text-shadow: 0 0 10px white;
   }
-  
-  .banner-content {
-    text-align: center; /* Center align text */
+  25% {
+    text-shadow: 0 0 20px white, 0 0 20px #ffd700;
   }
-  
-  .banner-text {
-    position: relative;
+  50% {
+    text-shadow: 0 0 30px white, 0 0 30px #ffd700;
   }
-  
+  75% {
+    text-shadow: 0 0 20px white, 0 0 20px #ffd700;
+  }
+  100% {
+    text-shadow: 0 0 10px white;
+  }
+}
+
+
+
+@media screen and (max-width: 3000px) {
+  .banner-container {
+    height: 20vh; /* Adjusted height for even smaller screens */
+    padding: 15vw; /* Adjusted padding for even smaller screens */
+  }
+
+  .banner-video {
+    top: -60%; /* Adjusted top value for even smaller screens */
+  }
+
   .banner-text h2 {
-    font-size: 3em;
-    color: #fff;
-    margin: 0;
+    font-size: 2em; /* Adjusted font size for even smaller screens */
   }
   
-  .glow-text {
-    animation: glowGradient 4s infinite linear;
+}
+
+@media screen and (max-width: 670px) {
+  .banner-container {
+    height: 10vh; /* Adjusted height for even smaller screens */
+    padding: 15vw; /* Adjusted padding for even smaller screens */
+  }
+
+  .banner-video {
+    top: -60%; /* Adjusted top value for even smaller screens */
+  }
+
+  .banner-text h2 {
+    font-size: 1em; /* Adjusted font size for even smaller screens */
   }
   
-  @keyframes glowGradient {
-    0% {
-      text-shadow: 0 0 10px white;
-    }
-    25% {
-      text-shadow: 0 0 20px white, 0 0 20px #ffd700;
-    }
-    50% {
-      text-shadow: 0 0 30px white, 0 0 30px #ffd700;
-    }
-    75% {
-      text-shadow: 0 0 20px white, 0 0 20px #ffd700;
-    }
-    100% {
-      text-shadow: 0 0 10px white;
-    }
-  }
-  
+}
+
+
+
