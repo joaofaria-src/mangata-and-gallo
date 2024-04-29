@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaPhone, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
 
 function Contact() {
   // State variables for form fields
@@ -32,64 +32,84 @@ function Contact() {
   };
 
   return (
-    <div className="contact-container">
-      <div className="pink-container contact-form-container">
-        <h2>Send us an Email</h2>
-        <form onSubmit={handleSubmit} className="contact-form">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={name}
-            onChange={handleNameChange}
-            required
-          />
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-          <label htmlFor="message">Message:</label>
-          <textarea
-            id="message"
-            name="message"
-            value={message}
-            onChange={handleMessageChange}
-            required
-          />
-          <button type="submit">Send</button>
-        </form>
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6">
+          <div className="contact-form-container">
+            <h2>Contact Us</h2>
+            <form onSubmit={handleSubmit} className="contact-form">
+              <div className="form-group">
+                <label htmlFor="name">Name:</label>
+                <input
+                  type="text"
+                  id="name"
+                  className="form-control"
+                  value={name}
+                  onChange={handleNameChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  className="form-control"
+                  value={email}
+                  onChange={handleEmailChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="message">Message:</label>
+                <textarea
+                  id="message"
+                  className="form-control"
+                  value={message}
+                  onChange={handleMessageChange}
+                  required
+                />
+              </div>
+              <button type="submit" className="btn btn-primary">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="contact-info-container">
+            <h2>Contact Information</h2>
+            <div className="contact-info">
+              <FaMapMarkerAlt className="icon" />
+              <div>
+                <p>1234 Magnolia Avenue</p>
+                <p>Springfield, MA 12345</p>
+              </div>
+            </div>
+            <div className="contact-info">
+              <FaEnvelope className="icon" />
+              <p>info@mangataandgallo.com</p>
+            </div>
+            <div className="contact-info">
+              <FaPhone className="icon" />
+              <p>(123) 456-7890</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="pink-container contact-info-container">
-        <h2>Contact Us</h2>
-        <div className="contact-info">
-          <div className="icon"><FaMapMarkerAlt /></div>
-          <p>1234 Magnolia Avenue</p>
-          <p>Springfield, MA 12345</p>
+      <div className="row">
+        <div className="col">
+          <div className="map-container">
+            <iframe
+              title="Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158858.48132354295!2d-0.24168189130441142!3d51.52877184166211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c24c5b5f65%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2suk!4v1619473223785!5m2!1sen!2suk"
+              width="100%"
+              height="400"
+              allowFullScreen=""
+              loading="lazy"
+            ></iframe>
+          </div>
         </div>
-        <div className="contact-info">
-          <div className="icon"><FaEnvelope /></div>
-          <p>Email: info@mangataandgallo.com</p>
-        </div>
-        <div className="contact-info">
-          <div className="icon"><FaPhone /></div>
-          <p>Phone: (123) 456-7890</p>
-        </div>
-      </div>
-      <div className="map-container pink-container">
-        <iframe
-          title="Map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158858.48132354295!2d-0.24168189130441142!3d51.52877184166211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c24c5b5f65%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2suk!4v1619473223785!5m2!1sen!2suk"
-          width="100%"
-          height="400"
-          allowFullScreen=""
-          loading="lazy"
-        ></iframe>
       </div>
     </div>
   );

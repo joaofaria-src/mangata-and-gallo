@@ -5,6 +5,7 @@ import "./App.css";
 import About from "./About";
 import Service from "./Service";
 import Contact from "./Contact";
+import Gallery from "./Gallery";
 import Banner from "./Banner";
 import logo from "./logos/Asset 2@3x.png";
 
@@ -26,7 +27,7 @@ function Navigation() {
           <Link className="nav-link" to="/">
             Home
           </Link>
-          <Link className="nav-link" to="#gallery">
+          <Link className="nav-link" to="/gallery">
             Gallery
           </Link>
           <Link className="nav-link" to="/contact">
@@ -81,6 +82,7 @@ function App() {
         <Routes>
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/" element={<Main />} />
         </Routes>
         <Footer />
