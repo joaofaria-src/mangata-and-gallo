@@ -67,9 +67,12 @@ function Main() {
 }
 
 function Footer() {
+  
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer>
-      <div className="copyright">© 2024 Mangata & Gallo</div>
+      <div className="footer">©{currentYear} Mangata & Gallo</div>
     </footer>
   );
 }
