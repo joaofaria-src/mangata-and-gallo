@@ -18,7 +18,7 @@
 
 .banner-text {
   position: absolute;
-  top: 50%;
+  bottom: -5%;
   left: 5%; /* Adjusted left position */
   transform: translateY(-90%);
   z-index: 3; /* Ensure text appears above video */
@@ -56,32 +56,32 @@
 
 @media screen and (max-width: 3000px) {
   .banner-container {
-    height: 20vh; /* Adjusted height for even smaller screens */
-    padding: 15vw; /* Adjusted padding for even smaller screens */
+    height: 20vh; 
+    padding: 15vw; 
   }
 
   .banner-video {
-    top: -60%; /* Adjusted top value for even smaller screens */
+    top: -60%; 
   }
 
   .banner-text h2 {
-    font-size: 2em; /* Adjusted font size for even smaller screens */
+    font-size: 2em; 
   }
   
 }
 
 @media screen and (max-width: 670px) {
   .banner-container {
-    height: 10vh; /* Adjusted height for even smaller screens */
-    padding: 15vw; /* Adjusted padding for even smaller screens */
+    height: 10vh; 
+    padding: 15vw; 
   }
 
   .banner-video {
-    top: -60%; /* Adjusted top value for even smaller screens */
+    top: -60%; 
   }
 
   .banner-text h2 {
-    font-size: 1em; /* Adjusted font size for even smaller screens */
+    font-size: 1em; 
   }
   
 }
