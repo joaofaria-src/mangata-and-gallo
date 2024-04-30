@@ -23,7 +23,6 @@ function Contact() {
   // Event handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can handle form submission logic here, like sending the email
     console.log("Form submitted:", { name, email, message });
     // Clear form fields after submission
     setName("");

@@ -5,7 +5,7 @@ import workImage from "./images/artisan.jpg";
 function About() {
   return (
     <div className="container">
-      <div className="pink-container">
+      <div className="gray-container">
         <div className="row">
           <div className="col-md-6">
             <div className="about-section">
