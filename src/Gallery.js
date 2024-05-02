@@ -13,6 +13,8 @@ function Gallery() {
   const productsData = {
     "Wedding Rings": [
       { title: "Diamond Solitaire Ring", image: ring1, description: "Exquisite diamond solitaire ring crafted with precision.", price: "$999" },
+      { title: "Vintage Sapphire Ring", image: ring2, description: "Timeless vintage sapphire ring with intricate detailing.", price: "$1299" },
+      { title: "Vintage Sapphire Ring", image: ring2, description: "Timeless vintage sapphire ring with intricate detailing.", price: "$1299" },
       { title: "Vintage Sapphire Ring", image: ring2, description: "Timeless vintage sapphire ring with intricate detailing.", price: "$1299" }
       // Add more wedding ring products
     ],

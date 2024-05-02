@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
 import "./App.css";
 import About from "./About";
 import Service from "./Service";
@@ -8,6 +7,7 @@ import Contact from "./Contact";
 import Gallery from "./Gallery";
 import Banner from "./Banner";
 import logo from "./logos/Asset 2@3x.png";
+import { FaUser, FaShoppingCart } from "react-icons/fa";
 
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,28 +17,55 @@ function Navigation() {
   };
 
   return (
-    <Navbar expand="lg" className="navbar">
-      <Navbar.Brand href="/">
-        <img src={logo} className="navbar-logo" alt="Company Logo" />
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={toggleMenu} />
-      <Navbar.Collapse id="basic-navbar-nav" className={isMenuOpen ? "show" : ""}>
-        <Nav className="ml-auto">
-          <Link className="nav-link" to="/">
-            Home
-          </Link>
-          <Link className="nav-link" to="/gallery">
-            Gallery
-          </Link>
-          <Link className="nav-link" to="/contact">
-            Contact
-          </Link>
-          <Link className="nav-link" to="/about">
-            About
-          </Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <nav className="navbar">
+      {/* Logo */}
+      <div className="navbar-logo">
+        <img src={logo} alt="Company Logo" />
+      </div>
+
+      {/* Collapse button for smaller screens */}
+      <button className="navbar-collapse-button" onClick={toggleMenu}>
+        <div className="icon-bar"></div>
+        <div className="icon-bar"></div>
+        <div className="icon-bar"></div>
+      </button>
+
+      {/* Menu */}
+      <div className={`navbar-menu ${isMenuOpen ? 'open' : ''}`}>
+        <ul className="navbar-ul">
+          <li className="nav-item">
+            <Link to="/" className="nav-link" onClick={toggleMenu}>
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/gallery" className="nav-link" onClick={toggleMenu}>
+              Gallery
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/contact" className="nav-link" onClick={toggleMenu}>
+              Contact
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/about" className="nav-link" onClick={toggleMenu}>
+              About
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      {/* Icons */}
+      <div className="navbar-icons">
+        <Link to="#" className="nav-link">
+          <FaUser />
+        </Link>
+        <Link to="#" className="nav-link">
+          <FaShoppingCart />
+        </Link>
+      </div>
+    </nav>
   );
 }
 
