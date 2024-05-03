@@ -23,6 +23,7 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
   
   /* Logo */
@@ -59,6 +60,11 @@ body, html {
     display: flex;
     align-items: center;
   }
+
+  .navbar-icons .nav-link:hover {
+    background-color: #f6f6f6;
+    color: #333;
+}
   
   /* Collapse button */
   .navbar-collapse-button {
@@ -67,7 +73,9 @@ body, html {
     background: none;
     cursor: pointer;
     padding: 0;
-    margin-top: 20px;
+    position: absolute; 
+    top: 20px; 
+    right: 20px;   
   }
  
   .icon-bar {

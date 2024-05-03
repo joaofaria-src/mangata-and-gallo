@@ -30,26 +30,31 @@ function Gallery() {
     ]
   };
 
+  // Function to handle category change
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
 
   return (
     <div className="container">
+      {/* Category menu */}
       <div className="category-menu">
         <ul>
+          {/* Render each category with an onClick event to handle category change */}
           <li className={selectedCategory === "Wedding Rings" ? "active" : ""} onClick={() => handleCategoryChange("Wedding Rings")}>Wedding Rings</li>
           <li className={selectedCategory === "Watches" ? "active" : ""} onClick={() => handleCategoryChange("Watches")}>Watches</li>
           <li className={selectedCategory === "Gift Ideas" ? "active" : ""} onClick={() => handleCategoryChange("Gift Ideas")}>Gift Ideas</li>
         </ul>
       </div>
+      {/* Gallery items */}
       <div className="gallery-items">
+        {/* Map through products of selected category and render each product */}
         {productsData[selectedCategory].map((product, index) => (
           <div className="gallery-item" key={index}>
-            <img src={product.image} alt={product.title} />
-            <h3>{product.title}</h3>
-            <p>{product.description}</p>
-            <p className="price">{product.price}</p>
+            <img src={product.image} alt={product.title} /> {/* Display product image */}
+            <h3>{product.title}</h3> {/* Display product title */}
+            <p>{product.description}</p> {/* Display product description */}
+            <p className="price">{product.price}</p> {/* Display product price */}
           </div>
         ))}
       </div>

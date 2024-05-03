@@ -33,10 +33,12 @@ function Contact() {
   return (
     <div className="container">
       <div className="row">
+        {/* Contact Form */}
         <div className="col-md-6">
           <div className="contact-form-container">
             <h2>Contact Us</h2>
             <form onSubmit={handleSubmit} className="contact-form">
+              {/* Name Input */}
               <div className="form-group">
                 <label htmlFor="name">Name:</label>
                 <input
@@ -48,6 +50,7 @@ function Contact() {
                   required
                 />
               </div>
+              {/* Email Input */}
               <div className="form-group">
                 <label htmlFor="email">Email:</label>
                 <input
@@ -59,6 +62,7 @@ function Contact() {
                   required
                 />
               </div>
+              {/* Message Input */}
               <div className="form-group">
                 <label htmlFor="message">Message:</label>
                 <textarea
@@ -69,15 +73,18 @@ function Contact() {
                   required
                 />
               </div>
+              {/* Submit Button */}
               <button type="submit" className="btn btn-primary">
                 Send Message
               </button>
             </form>
           </div>
         </div>
+        {/* Contact Information */}
         <div className="col-md-6">
           <div className="contact-info-container">
             <h2>Contact Information</h2>
+            {/* Address */}
             <div className="contact-info">
               <FaMapMarkerAlt className="icon" />
               <div>
@@ -85,10 +92,12 @@ function Contact() {
                 <p>Springfield, MA 12345</p>
               </div>
             </div>
+            {/* Email */}
             <div className="contact-info">
               <FaEnvelope className="icon" />
               <p>info@mangataandgallo.com</p>
             </div>
+            {/* Phone */}
             <div className="contact-info">
               <FaPhone className="icon" />
               <p>(123) 456-7890</p>
@@ -96,6 +105,7 @@ function Contact() {
           </div>
         </div>
       </div>
+      {/* Google Map */}
       <div className="row">
         <div className="col">
           <div className="map-container">
