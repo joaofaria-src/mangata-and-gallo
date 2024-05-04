@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Auth.css"; 
+import "./Auth.css";
 
 function Auth() {
   const [formData, setFormData] = useState({
@@ -14,13 +14,16 @@ function Auth() {
   const [errors, setErrors] = useState({});
 
   // Toggle between login and registration forms
-  const handleToggleForm = () => {
-    setFormData(prevState => ({
-      ...prevState,
-      isLogin: !prevState.isLogin
-    }));
-    setErrors({}); // Clear any previous errors when toggling the form
-  };
+const handleToggleForm = () => {
+  setFormData({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    isLogin: !formData.isLogin
+  });
+  setErrors({}); // Clear any previous errors when toggling the form
+};
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -51,27 +54,27 @@ function Auth() {
     }
   };
 
-  // Validate the entire form before submission
-  const validateForm = () => {
-    const errors = {};
-    if (!formData.email.trim()) {
-      errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = "Email is invalid";
-    }
-    if (!formData.password.trim()) {
-      errors.password = "Password is required";
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()]).{8,}/.test(formData.password)) {
-      errors.password = "Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and be at least 8 characters long";
-    }
-    if (!formData.isLogin && !formData.firstName.trim()) {
-      errors.firstName = "First Name is required";
-    }
-    if (!formData.isLogin && !formData.lastName.trim()) {
-      errors.lastName = "Last Name is required";
-    }
-    return errors;
-  };
+// Validate the entire form before submission
+const validateForm = () => {
+  const errors = {};
+  if (!formData.email.trim()) {
+    errors.email = "Email is required";
+  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    errors.email = "Email is invalid";
+  }
+  if (!formData.password.trim()) {
+    errors.password = "Password is required";
+  } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()]).{8,}/.test(formData.password)) {
+    errors.password = "Password must contain at least one uppercase letter, one number, one special character, and be at least 8 characters long";
+  }
+  if (!formData.isLogin && !formData.firstName.trim()) {
+    errors.firstName = "First Name is required";
+  }
+  if (!formData.isLogin && !formData.lastName.trim()) {
+    errors.lastName = "Last Name is required";
+  }
+  return errors;
+};
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -82,7 +85,9 @@ function Auth() {
       return;
     }
     try {
-      const url = formData.isLogin ? "http://localhost:5000/login" : "http://localhost:5000/register";
+      const url = formData.isLogin
+        ? "http://localhost:5000/login"
+        : "http://localhost:5000/register";
       const response = await axios.post(url, formData);
       console.log(response.data);
       // Clear form data and errors on successful submission
@@ -99,9 +104,9 @@ function Auth() {
         // The request was made and the server responded with a status code
         if (error.response.status === 400) {
           // Handle specific error messages based on status code
-          if (error.response.data.message === 'User already exists') {
+          if (error.response.data.message === "User already exists") {
             setErrors({ email: "Email address is already in use" });
-          } else if (error.response.data.message === 'Invalid password') {
+          } else if (error.response.data.message === "Invalid password") {
             setErrors({ password: "Invalid email or password" });
           } else {
             // Generic server error message
@@ -122,88 +127,71 @@ function Auth() {
   };
 
   return (
-    <div className="auth-form-container">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="auth-form-card">
-            <div className="auth-form-card-body">
-              {/* Display appropriate form title based on login state */}
-              <h2 className="text-center mb-4">{formData.isLogin ? "Sign In" : "Sign Up"}</h2>
-              <form onSubmit={handleSubmit}>
-                {/* Display additional fields for registration */}
-                {!formData.isLogin && (
-                  <>
-                    <div className="auth-form-group">
-                      <label htmlFor="firstName">First Name *</label>
-                      <input
-                        type="text"
-                        className="auth-form-input"
-                        id="firstName"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        required
-                      />
-                      {errors.firstName && <div className="text-danger">{errors.firstName}</div>}
-                    </div>
-                    <div className="auth-form-group">
-                      <label htmlFor="lastName">Last Name *</label>
-                      <input
-                        type="text"
-                        className="auth-form-input"
-                        id="lastName"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        required
-                      />
-                      {errors.lastName && <div className="text-danger">{errors.lastName}</div>}
-                    </div>
-                  </>
-                )}
-                {/* Display email input field */}
-                <div className="auth-form-group">
-                  <label htmlFor="email">Email *</label>
-                  <input
-                    type="email"
-                    className="auth-form-input"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  {errors.email && <div className="text-danger">{errors.email}</div>}
-                </div>
-                {/* Display password input field */}
-                <div className="auth-form-group">
-                  <label htmlFor="password">Password *</label>
-                  <input
-                    type="password"
-                    className="auth-form-input"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                  {errors.password && <div className="text-danger">{errors.password}</div>}
-                </div>
-                {/* Display submit button */}
-                <button type="submit" className="btn auth-btn-primary btn-block">
-                  {formData.isLogin ? "Sign In" : "Sign Up"}
-                </button>
-              </form>
-              {/* Display toggle button for switching between login and registration */}
-              <p className="text-center mt-3">
-                {formData.isLogin ? "Don't have an account?" : "Already have an account?"}
-                <button className="btn auth-btn-link" onClick={handleToggleForm}>
-                  {formData.isLogin ? "Sign Up" : "Sign In"}
-                </button>
-              </p>
-            </div>
+    <div className="cont_centrar">
+      <div className="cont_login">
+        <form onSubmit={handleSubmit}>
+          <div className="cont_tabs_login">
+            <ul className="ul_tabs">
+              <li className={formData.isLogin ? "active" : ""}>
+                <a href="#" onClick={handleToggleForm}>SIGN IN</a>
+                <span className="linea_bajo_nom"></span>
+              </li>
+              <li className={!formData.isLogin ? "active" : ""}>
+                <a href="#up" onClick={handleToggleForm}>SIGN UP</a>
+                <span className="linea_bajo_nom"></span>
+              </li>
+            </ul>
           </div>
-        </div>
+          <div className="cont_text_inputs">
+            {/* First name and last name fields for sign up */}
+            {!formData.isLogin && (
+              <>
+                <input
+                  type="text"
+                  className="input_form_sign sign_up"
+                  placeholder="FIRST NAME"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="text"
+                  className="input_form_sign sign_up"
+                  placeholder="LAST NAME"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  required
+                />
+              </>
+            )}
+            {/* Common fields for both sign up and sign in */}
+            <input
+              type="text"
+              className={"input_form_sign d_block " + (errors.email ? "active_inp" : "")}
+              placeholder="EMAIL"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && <p className="error">{errors.email}</p>}
+            <input
+              type="password"
+              className={"input_form_sign d_block " + (errors.password ? "active_inp" : "")}
+              placeholder="PASSWORD"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            {errors.password && <p className="error">{errors.password}</p>}
+          </div>
+          <div className="cont_btn">
+            <button type="submit" className="btn_sign">{formData.isLogin ? "SIGN IN" : "SIGN UP"}</button>
+          </div>
+        </form>
       </div>
     </div>
   );

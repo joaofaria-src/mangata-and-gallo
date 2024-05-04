@@ -1,67 +1,100 @@
-/* Increased margin-top for better spacing */
-.auth-form-container {
-    margin-top: 100px;
+
+
+.cont_centrar {
+  position: absolute;
+  width: 320px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Center the container both horizontally and vertically */
 }
 
-/* Added transition for smoother shadow effect */
-.auth-form-card {
-    border: 1px solid #ccc;
-    border-radius: 8px; /* Slightly increased border-radius for a softer look */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhanced box-shadow for depth */
-    transition: box-shadow 0.3s ease; /* Added transition for smoother shadow effect */
+.cont_login {
+  width: 100%; /* Ensure the form container spans the full width */
+  background-image: linear-gradient(-226deg, #FFFFFF 8%, #EEF3F5 100%);
+  border-radius: 8px;
+  transition: all 0.5s;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
+  padding: 20px; /* Add padding for inner content */
 }
 
-.auth-form-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adjusted box-shadow on hover for emphasis */
+.cont_tabs_login {
+  width: 100%; /* Ensure the tabs container spans the full width */
 }
 
-/* Increased padding for better spacing */
-.auth-form-card-body {
-    padding: 30px; /* Increased padding for better spacing */
+.ul_tabs {
+  display: flex;
+  list-style: none;
+  padding: 0;
 }
 
-/* Adjusted margin-bottom for consistent spacing */
-.auth-form-group {
-    margin-bottom: 20px; /* Adjusted margin-bottom for consistent spacing */
+.ul_tabs > li { 
+  flex: 1;
+  text-align: center;
 }
 
-.auth-form-input {
-    width: 100%;
-    padding: 12px; /* Increased padding for better input area */
-    font-size: 16px; /* Increased font size for better readability */
-    border: 1px solid #ccc;
-    border-radius: 8px; /* Slightly increased border-radius for a softer look */
-    box-sizing: border-box;
-    transition: border-color 0.3s ease; /* Added transition for smoother border color change */
+.ul_tabs > li > a  {  
+  text-decoration: none;
+  font-family: Helvetica;
+  font-size: 16px;
+  color: #999;
+  line-height: 14px;
+  padding: 20px ;
+  display: block;
+  transition: all 0.5s;
 }
 
-.auth-form-input:focus {
-    outline: none; /* Removed outline on focus for cleaner appearance */
-    border-color: #007bff; /* Changed border color on focus for better visibility */
+.ul_tabs > .active > a  {  
+  color: #FF8383;
 }
 
-.auth-btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: #fff;
-    padding: 12px 20px; /* Increased padding for better button size */
-    border-radius: 8px; /* Slightly increased border-radius for consistency */
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* Added transition for smoother color change */
+.linea_bajo_nom {
+  position: relative;
+  width: 100%;
+  float: left;
+  background-color: #999;
+  height: 2px;
+  transition: width 0.3s ease, background-color 0.3s ease;
 }
 
-.auth-btn-primary:hover {
-    background-color: #0056b3; /* Adjusted hover background color for better contrast */
-    border-color: #0056b3; /* Adjusted hover border color for consistency */
+.active .linea_bajo_nom {
+  position: relative;
+  width: 100%;
+  float: left;
+  background-color: #FF8383;
 }
 
-.auth-btn-link {
-    background-color: transparent;
-    border: none;
-    color: #007bff;
-    cursor: pointer;
+.cont_text_inputs {
+  margin-top: 20px;
 }
 
-.auth-btn-link:hover {
-    text-decoration: underline;
+.input_form_sign {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #B0BEC5 ;
+  background-color: transparent;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.5s;
+  margin-bottom: 20px; /* Add margin between input fields */
+}
+
+.cont_btn {
+  text-align: center; /* Align the button in the center */
+}
+
+.btn_sign {
+  background: rgba(255,64,88,0.74);
+  box-shadow: 0px 2px 20px 2px rgba(255,114,132,0.50);
+  border-radius: 8px;
+  padding: 15px 30px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
 }
