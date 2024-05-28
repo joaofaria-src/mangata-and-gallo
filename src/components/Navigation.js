@@ -1,34 +1,40 @@
-import logo from "./logos/Asset 2@3x.png"; // Importing the company logo image
-import { Link } from "react-router-dom"; // Importing Link component from react-router-dom for navigation
-import React, { useState } from "react"; // Importing React and useState hook
-import { FaUser, FaShoppingCart } from "react-icons/fa"; // Importing icons from react-icons library
+import React, { useState } from "react";
+import logo from "../logos/Asset 2@3x.png";
+import { Link } from "react-router-dom";
+import { FaUser, FaShoppingCart } from "react-icons/fa";
 
-export default function Navigation() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage menu open/close
+function Navigation({ userFirstName }) {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
-    // Function to toggle menu open/close state
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const toggleUserMenu = () => {
+        setIsUserMenuOpen(!isUserMenuOpen);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('firstName');
+        window.location.reload();
+    };
+
     return (
         <nav className="navbar">
-            {/* Logo */}
             <div className="navbar-logo">
-                <img src={logo} alt="Company Logo" /> {/* Displaying the company logo */}
+                <img src={logo} alt="Company Logo" />
             </div>
 
-            {/* Collapse button for smaller screens */}
             <button className="navbar-collapse-button" onClick={toggleMenu}>
                 <div className="icon-bar"></div>
                 <div className="icon-bar"></div>
                 <div className="icon-bar"></div>
             </button>
 
-            {/* Menu */}
             <div className={`navbar-menu ${isMenuOpen ? 'open' : ''}`}>
                 <ul className="navbar-ul">
-                    {/* Navigation Links */}
                     <li className="nav-item">
                         <Link to="/" className="nav-link" onClick={toggleMenu}>
                             Home
@@ -52,13 +58,23 @@ export default function Navigation() {
                 </ul>
             </div>
 
-            {/* Icons */}
             <div className="navbar-icons">
-                {/* User Icon */}
-                <Link to="/auth" className="nav-link">
-                    <FaUser />
-                </Link>
-                {/* Shopping Cart Icon */}
+                <div className="nav-dropdown">
+                    {userFirstName ? (
+                        <button className="nav-dropdown-button" onClick={toggleUserMenu}>
+                            {`Hello, ${userFirstName} \u25BC`}
+                        </button>
+                    ) : (
+                        <Link to="/auth" className="nav-link">
+                            <FaUser />
+                        </Link>
+                    )}
+                    {isUserMenuOpen && (
+                        <div className="nav-dropdown-content">
+                            {userFirstName && <Link to="#" onClick={handleLogout}>Logout</Link>}
+                        </div>
+                    )}
+                </div>
                 <Link to="#" className="nav-link">
                     <FaShoppingCart />
                 </Link>
@@ -66,3 +82,5 @@ export default function Navigation() {
         </nav>
     );
 }
+
+export default Navigation;

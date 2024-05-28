@@ -1,6 +1,6 @@
 import React from "react";
 import "./banner.css";
-import bannerVideo from "./images/rings.mp4";
+import bannerVideo from "../images/rings.mp4";
 
 function Banner() {
   return (
