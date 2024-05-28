@@ -1,0 +1,63 @@
+/* Main content section */
+.main {
+    flex-grow: 1;
+    display: grid;
+    padding-bottom: 20px; 
+    margin-bottom: 60px;
+}
+
+/* Card container */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Individual cards */
+.card {
+    background-color: #f6f6f6 !important;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card body */
+.card-body {
+    padding: 20px;
+}
+
+/* Card title */
+.card-title {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Card text */
+.card-text {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Primary button */
+.btn-primary {
+    background-color: #333 !important;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+/* Primary button hover effect */
+.btn-primary:hover {
+    background-color: #555;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    /* Single column layout for cards */
+    .card-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

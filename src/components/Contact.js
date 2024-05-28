@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
+import "./contact.css";
 
 function Contact() {
   // State variables for form fields

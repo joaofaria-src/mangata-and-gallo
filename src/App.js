@@ -8,17 +8,7 @@ import Gallery from "./components/Gallery";
 import Banner from "./components/Banner";
 import Auth from "./components/Auth";
 import Navigation from "./components/Navigation";
-
-// Footer component displaying the current year
-function Footer() {
-  const currentYear = new Date().getFullYear();
-
-  return (
-    <footer>
-      <div className="footer">©{currentYear} Mangata & Gallo</div>
-    </footer>
-  );
-}
+import Footer from "./components/Footer";
 
 // App component managing routing and layout
 function App() {

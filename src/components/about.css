@@ -1,0 +1,33 @@
+/* About page section */
+.gray-container {
+    background-color: #f6f6f6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+/* About page section headings */
+.about-section {
+    margin-bottom: 30px;
+}
+
+/* About page section heading */
+.about-section h2 {
+    margin-bottom: 20px;
+}
+
+/* About page section text */
+.about-section p {
+    margin-bottom: 15px;
+}
+
+/* About page image */
+.about-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}

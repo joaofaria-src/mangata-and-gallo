@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../logos/Asset 2@3x.png";
 import { Link } from "react-router-dom";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
+import "./navigation.css";
 
 function Navigation({ userFirstName }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

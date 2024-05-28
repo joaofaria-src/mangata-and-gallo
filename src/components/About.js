@@ -1,6 +1,7 @@
 import React from "react";
 import companyImage from "../images/store.jpg";
 import workImage from "../images/artisan.jpg";
+import "./about.css";
 
 function About() {
   return (

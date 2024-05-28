@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import item1Image from "../images/rings.jpg";
 import item2Image from "../images/watches.jpg";
 import item3Image from "../images/bracelets.jpg";
+import "./service.css";
 
 
 const images = {
