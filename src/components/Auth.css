@@ -27,12 +27,12 @@
   padding: 0;
 }
 
-.ul_tabs > li { 
+.ul_tabs > li {
   flex: 1;
   text-align: center;
 }
 
-.ul_tabs > li > a  {  
+.ul_tabs > li > a  {
   text-decoration: none;
   font-family: Helvetica;
   font-size: 16px;
@@ -43,7 +43,7 @@
   transition: all 0.5s;
 }
 
-.ul_tabs > .active > a  {  
+.ul_tabs > .active > a  {
   color: black;
 }
 
@@ -75,11 +75,11 @@
   font-size: 14px;
   outline: none;
   transition: all 0.5s;
-  margin-bottom: 20px; /* Add margin between input fields */
+  margin-bottom: 20px;
 }
 
 .cont_btn {
-  text-align: center; /* Align the button in the center */
+  text-align: center;
 }
 
 .btn_sign {
