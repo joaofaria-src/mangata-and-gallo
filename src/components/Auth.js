@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Auth.css";
+import { Link } from "react-router-dom";
 
 function Auth({ setUserFirstName }) {
   const [formData, setFormData] = useState({
@@ -168,6 +169,11 @@ function Auth({ setUserFirstName }) {
             <div className="cont_btn">
               <button type="submit" className="btn_sign">{formData.isLogin ? "Log In" : "Register"}</button>
             </div>
+            {formData.isLogin && (
+              <div className="forgot-password-link">
+              <Link to="/forgot-password">Forgot Password?</Link>
+            </div>
+            )}
           </form>
         )}
       </div>

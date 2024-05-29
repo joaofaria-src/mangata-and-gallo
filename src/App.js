@@ -9,8 +9,9 @@ import Banner from "./components/Banner";
 import Auth from "./components/Auth";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import ForgotPasswordForm from "./components/ForgotPasswordForm";
+import ResetPasswordForm from "./components/ResetPasswordForm";
 
-// App component managing routing and layout
 function App() {
   const [userFirstName, setUserFirstName] = useState("");
 
@@ -31,6 +32,8 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/gallery/:category" element={<Gallery />} />
           <Route path="/auth" element={<Auth setUserFirstName={setUserFirstName} />} />
+          <Route path="/forgot-password" element={<ForgotPasswordForm />} />
+          <Route path="/api/auth/reset-password" element={<ResetPasswordForm />} />
           <Route path="/" element={<Main />} />
         </Routes>
         <Footer />
@@ -39,7 +42,6 @@ function App() {
   );
 }
 
-// Main component rendering the banner and services section
 function Main() {
   return (
     <main>
