@@ -5,7 +5,7 @@ import logo from "../logos/Asset 2@3x.png";
 import ShoppingCart from "./ShoppingCart";
 import "./navigation.css";
 
-function Navigation({ userUserName }) {
+function Navigation({ userFirstName }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -92,9 +92,9 @@ function Navigation({ userUserName }) {
 
             <div className="navbar-icons">
                 <div className="nav-dropdown">
-                    {userUserName ? (
+                    {userFirstName ? (
                         <button className="nav-dropdown-button" onClick={toggleUserMenu}>
-                            {`Hello, ${userUserName} \u25BC`}
+                            {`Hello, ${userFirstName} \u25BC`}
                         </button>
                     ) : (
                         <Link to="/auth" className="nav-link">
@@ -103,7 +103,7 @@ function Navigation({ userUserName }) {
                     )}
                     {isUserMenuOpen && (
                         <div className="nav-dropdown-content">
-                            {userUserName && <Link to="#" onClick={handleLogout}>Logout</Link>}
+                            {userFirstName && <Link to="#" onClick={handleLogout}>Logout</Link>}
                         </div>
                     )}
                 </div>
