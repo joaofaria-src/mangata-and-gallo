@@ -1,41 +1,56 @@
-/* Contact page form container */
-.contact-form-container {
+/* Contact page container */
+.contact-container {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Contact page row */
+.contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    width: 100%;
+}
+
+/* Contact form column */
+.contact-form-column {
+    flex: 1;
+    padding: 15px;
+    width: 100%;
+}
+
+/* Contact form wrapper */
+.contact-form-wrapper {
     margin-top: 30px;
     background-color: #f6f6f6;
     border-radius: 10px;
     padding: 30px;
     margin-bottom: 20px;
+    width: 100%;
 }
 
-/* Contact page info container */
-.contact-info-container {
-    margin-top: 30px;
-    background-color: #f6f6f6;
-    border-radius: 10px;
-    padding: 30px;
-    margin-bottom: 20px;
-}
-
-/* Contact page form */
+/* Contact form */
 .contact-form {
     margin-top: 20px;
 }
 
-/* Form groups in contact page form */
-.form-group {
+/* Contact form group */
+.contact-form-group {
     margin-bottom: 20px;
 }
 
-/* Form controls in contact page form */
-.form-control {
+/* Contact form control */
+.contact-form-control {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-/* Primary button in contact page */
-.btn-primary {
+/* Contact button */
+.contact-btn {
     background-color: #333;
     color: #fff;
     border: none;
@@ -45,29 +60,65 @@
     transition: background-color 0.3s;
 }
 
-/* Primary button hover effect in contact page */
-.btn-primary:hover {
+/* Contact button primary */
+.contact-btn-primary {
+    background-color: #333;
+}
+
+/* Contact button primary hover effect */
+.contact-btn-primary:hover {
     background-color: #555;
 }
 
-/* Contact information */
-.contact-info {
+/* Contact information column */
+.contact-info-column {
+    flex: 1;
+    padding: 15px;
+    width: 100%;
+}
+
+/* Contact info wrapper */
+.contact-info-wrapper {
+    margin-top: 30px;
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Contact information item */
+.contact-info-item {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
 }
 
-/* Icons in contact information */
-.icon {
+/* Contact icon */
+.contact-icon {
     font-size: 24px;
     margin-right: 10px;
 }
 
-/* Map container */
-.map-container {
+/* Contact map row */
+.contact-map-row {
+    margin: 0 -15px;
+    width: 100%;
+}
+
+/* Contact map column */
+.contact-map-column {
+    flex: 1;
+    padding: 15px;
+    width: 100%;
+}
+
+/* Contact map wrapper */
+.contact-map-wrapper {
     border-radius: 10px;
     margin-top: 20px;
     overflow: hidden;
+    width: 100%;
 }
 
 /* Iframe */
