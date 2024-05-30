@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "./gallery.css";
 
-function Gallery() {
+function Gallery({ addToCart }) {
   const { category } = useParams();
   const [selectedCategory, setSelectedCategory] = useState("Wedding Rings");
   const [products, setProducts] = useState([]);
@@ -78,7 +78,9 @@ function Gallery() {
                 <div className="product-price">
                   <span>${product.attributes.Price}</span>
                   {hoveredProduct === product && (
-                    <span className="product-action"><a href="#!" className="add-to-cart">Add to cart</a></span>
+                    <span className="product-action">
+                      <a href="#!" className="add-to-cart" onClick={() => addToCart(product)}>Add to cart</a>
+                    </span>
                   )}
                 </div>
               </div>

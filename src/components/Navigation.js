@@ -1,12 +1,17 @@
-import React, { useState } from "react";
-import logo from "../logos/Asset 2@3x.png";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
+import logo from "../logos/Asset 2@3x.png";
+import ShoppingCart from "./ShoppingCart";
 import "./navigation.css";
 
-function Navigation({ userFirstName }) {
+function Navigation({ userUserName }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const [isCartOpen, setIsCartOpen] = useState(false);
+    const [cartItems, setCartItems] = useState([]);
+
+    const cartRef = useRef(null);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -16,11 +21,37 @@ function Navigation({ userFirstName }) {
         setIsUserMenuOpen(!isUserMenuOpen);
     };
 
+    const toggleCart = () => {
+        setIsCartOpen(!isCartOpen);
+    };
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('firstName');
         window.location.reload();
     };
+
+    const addToCart = (product) => {
+        setCartItems([...cartItems, product]);
+    };
+
+    const handleClickOutside = (event) => {
+        if (cartRef.current && !cartRef.current.contains(event.target)) {
+            setIsCartOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        if (isCartOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isCartOpen]);
 
     return (
         <nav className="navbar">
@@ -61,9 +92,9 @@ function Navigation({ userFirstName }) {
 
             <div className="navbar-icons">
                 <div className="nav-dropdown">
-                    {userFirstName ? (
+                    {userUserName ? (
                         <button className="nav-dropdown-button" onClick={toggleUserMenu}>
-                            {`Hello, ${userFirstName} \u25BC`}
+                            {`Hello, ${userUserName} \u25BC`}
                         </button>
                     ) : (
                         <Link to="/auth" className="nav-link">
@@ -72,14 +103,16 @@ function Navigation({ userFirstName }) {
                     )}
                     {isUserMenuOpen && (
                         <div className="nav-dropdown-content">
-                            {userFirstName && <Link to="#" onClick={handleLogout}>Logout</Link>}
+                            {userUserName && <Link to="#" onClick={handleLogout}>Logout</Link>}
                         </div>
                     )}
                 </div>
-                <Link to="#" className="nav-link">
+                <Link to="#" className="nav-link" onClick={toggleCart}>
                     <FaShoppingCart />
                 </Link>
             </div>
+
+            <ShoppingCart ref={cartRef} isOpen={isCartOpen} toggleCart={toggleCart} cartItems={cartItems} />
         </nav>
     );
 }
