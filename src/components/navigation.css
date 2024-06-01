@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    z-index: 10;
+    z-index: 900;
   }
   
   /* Logo */
@@ -57,9 +57,9 @@
     background: none;
     cursor: pointer;
     padding: 0;
-    position: absolute; 
-    top: 20px; 
-    right: 20px;   
+    position: absolute;
+    top: 22px;
+    left: 20px;
   }
  
   .icon-bar {

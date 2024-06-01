@@ -12,6 +12,13 @@
     z-index: 1000;
 }
 
+@media (max-width: 768px) {
+    .shopping-cart {
+      width: 90%;
+      right: -90%;
+    }
+  }
+
 .shopping-cart.open {
     right: 0;
 }
@@ -38,7 +45,7 @@
 .shopping-cart-body {
     padding: 1rem;
     overflow-y: auto;
-    flex-grow: 1; /* Allow the body to grow and take available space */
+    flex-grow: 1; 
 }
 
 .cart-item {
