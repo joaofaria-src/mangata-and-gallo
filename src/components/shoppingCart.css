@@ -1,4 +1,5 @@
 .shopping-cart {
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     position: fixed;

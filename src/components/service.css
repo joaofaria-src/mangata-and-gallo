@@ -29,6 +29,8 @@
 
 /* Card title */
 .card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
     color: #333;
     font-size: 1.5rem;
     margin-bottom: 15px;
@@ -36,13 +38,16 @@
 
 /* Card text */
 .card-text {
+    font-family: 'Montserrat', sans-serif;
     color: #333;
     font-size: 1rem;
     line-height: 1.6;
+    text-align: justify;
 }
 
 /* Primary button */
 .btn-primary {
+    font-family: 'Montserrat', sans-serif;
     background-color: #333 !important;
     color: #fff;
     border: none;

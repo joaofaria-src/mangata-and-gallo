@@ -4,6 +4,7 @@
     padding: 20px;
     max-width: 1200px;
     width: 100%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Contact page row */
@@ -90,15 +91,17 @@
 /* Contact information item */
 .contact-info-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 /* Contact icon */
 .contact-icon {
-    font-size: 24px;
+    font-size: 20px;
     margin-right: 10px;
 }
+
 
 /* Contact map row */
 .contact-map-row {
