@@ -14,6 +14,7 @@ import ResetPasswordForm from "./components/ResetPasswordForm";
 
 function App() {
   const [userFirstName, setUserFirstName] = useState("");
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     const firstName = localStorage.getItem('firstName');
@@ -22,15 +23,23 @@ function App() {
     }
   }, []);
 
+  const addToCart = (product) => {
+    setCartItems((prevItems) => [...prevItems, product]);
+  };
+
+  const removeFromCart = (index) => {
+    setCartItems((prevItems) => prevItems.filter((_, i) => i !== index));
+  };
+
   return (
     <BrowserRouter>
       <div className="App">
-        <Navigation userFirstName={userFirstName} />
+        <Navigation userFirstName={userFirstName} cartItems={cartItems} removeFromCart={removeFromCart} />
         <Routes>
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/gallery/:category" element={<Gallery />} />
+          <Route path="/gallery" element={<Gallery addToCart={addToCart} />} />
+          <Route path="/gallery/:category" element={<Gallery addToCart={addToCart} />} />
           <Route path="/auth" element={<Auth setUserFirstName={setUserFirstName} />} />
           <Route path="/forgot-password" element={<ForgotPasswordForm />} />
           <Route path="/api/auth/reset-password" element={<ResetPasswordForm />} />

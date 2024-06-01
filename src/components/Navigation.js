@@ -5,11 +5,10 @@ import logo from "../logos/Asset 2@3x.png";
 import ShoppingCart from "./ShoppingCart";
 import "./navigation.css";
 
-function Navigation({ userFirstName }) {
+function Navigation({ userFirstName, cartItems, removeFromCart }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
-    const [cartItems, setCartItems] = useState([]);
 
     const cartRef = useRef(null);
 
@@ -29,10 +28,6 @@ function Navigation({ userFirstName }) {
         localStorage.removeItem('token');
         localStorage.removeItem('firstName');
         window.location.reload();
-    };
-
-    const addToCart = (product) => {
-        setCartItems([...cartItems, product]);
     };
 
     const handleClickOutside = (event) => {
@@ -112,7 +107,7 @@ function Navigation({ userFirstName }) {
                 </Link>
             </div>
 
-            <ShoppingCart ref={cartRef} isOpen={isCartOpen} toggleCart={toggleCart} cartItems={cartItems} />
+            <ShoppingCart ref={cartRef} isOpen={isCartOpen} toggleCart={toggleCart} cartItems={cartItems} removeFromCart={removeFromCart} />
         </nav>
     );
 }
