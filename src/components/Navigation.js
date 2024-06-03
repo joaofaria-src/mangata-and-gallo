@@ -1,15 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import logo from "../logos/Asset 2@3x.png";
 import ShoppingCart from "./ShoppingCart";
 import "./navigation.css";
+import { ModalContext } from './ModalContext';
 
 function Navigation({ userFirstName, cartItems, removeFromCart }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
-
+    const { openModal } = useContext(ModalContext);
     const cartRef = useRef(null);
 
     const toggleMenu = () => {
@@ -92,7 +93,7 @@ function Navigation({ userFirstName, cartItems, removeFromCart }) {
                             {`Hello, ${userFirstName} \u25BC`}
                         </button>
                     ) : (
-                        <Link to="/auth" className="nav-link">
+                        <Link to="#" className="nav-link" onClick={openModal}>
                             <FaUser />
                         </Link>
                     )}
@@ -106,7 +107,6 @@ function Navigation({ userFirstName, cartItems, removeFromCart }) {
                     <FaShoppingCart />
                 </Link>
             </div>
-
             <ShoppingCart ref={cartRef} isOpen={isCartOpen} toggleCart={toggleCart} cartItems={cartItems} removeFromCart={removeFromCart} />
         </nav>
     );

@@ -11,7 +11,7 @@
 .contact-row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -15px;
+    margin: 0px;
     width: 100%;
 }
 
@@ -24,22 +24,14 @@
 
 /* Contact form wrapper */
 .contact-form-wrapper {
-    margin-top: 30px;
     background-color: #f6f6f6;
     border-radius: 10px;
     padding: 30px;
-    margin-bottom: 20px;
     width: 100%;
 }
 
-/* Contact form */
-.contact-form {
-    margin-top: 20px;
-}
-
-/* Contact form group */
 .contact-form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Contact form control */
@@ -80,11 +72,9 @@
 
 /* Contact info wrapper */
 .contact-info-wrapper {
-    margin-top: 30px;
     background-color: #f6f6f6;
     border-radius: 10px;
     padding: 30px;
-    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -92,7 +82,6 @@
 .contact-info-item {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 20px;
     margin-top: 20px;
 }
 
@@ -105,7 +94,7 @@
 
 /* Contact map row */
 .contact-map-row {
-    margin: 0 -15px;
+    margin: 0px;
     width: 100%;
 }
 
@@ -131,3 +120,12 @@ iframe {
     border: none;
     margin-bottom: 50px;
 }
+
+@media (max-width: 605px) {
+    .contact-info-wrapper {
+      margin-top: 5px;
+    }
+    .contact-map-wrapper{
+        margin-top: 5px;
+    }
+  }

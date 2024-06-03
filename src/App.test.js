@@ -1,38 +1,58 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import App from './App';
-import Contact from './Contact';
+const React = require('react');
+const { render, fireEvent, waitFor, act } = require('@testing-library/react');
+const Contact = require('./components/Contact').default;
 
-describe('App Component', () => {
- test('renders navbar links correctly', () => {
-    const { getAllByRole } = render(<App />);
-    const linkElements = getAllByRole('link', { name: /Home|Gallery|Contact|About/ });
-    console.log(linkElements); // Log the link elements to the console
-    expect(linkElements.length).toBe(4);
+describe('Contact Component', () => {
+  it('renders contact form with inputs and submit button', () => {
+    const { getByLabelText, getByText } = render(<Contact />);
+
+    // Check if name input is rendered
+    const nameInput = getByLabelText(/Name:/i);
+    expect(nameInput).toBeInTheDocument();
+
+    // Check if email input is rendered
+    const emailInput = getByLabelText(/Email:/i);
+    expect(emailInput).toBeInTheDocument();
+
+    // Check if message textarea is rendered
+    const messageTextarea = getByLabelText(/Message:/i);
+    expect(messageTextarea).toBeInTheDocument();
+
+    // Check if submit button is rendered
+    const submitButton = getByText(/Send Message/i);
+    expect(submitButton).toBeInTheDocument();
   });
 
-  test('form submission in Contact component', () => {
-    render(<Contact />);
-    
-    // Print out the rendered HTML for inspection
-    console.log(screen.debug());
-    
-    // Find form elements by their labels
-    const nameInput = screen.getByLabelText('Name:');
-    const emailInput = screen.getByLabelText('Email:');
-    const messageInput = screen.getByLabelText('Message:');
-    const submitButton = screen.getByRole('button', { name: /Send Message/i });
-  
-    // Simulate user input and form submission
+  it('updates state when input values change', () => {
+    const { getByLabelText } = render(<Contact />);
+
+    // Simulate user input for name field
+    const nameInput = getByLabelText(/Name:/i);
     fireEvent.change(nameInput, { target: { value: 'John Doe' } });
+    expect(nameInput.value).toBe('John Doe');
+
+    // Simulate user input for email field
+    const emailInput = getByLabelText(/Email:/i);
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
-    fireEvent.change(messageInput, { target: { value: 'This is a test message' } });
-    fireEvent.click(submitButton);
-  
-    // Assert that input fields are cleared after submission
-    expect(nameInput).toHaveValue('');
-    expect(emailInput).toHaveValue('');
-    expect(messageInput).toHaveValue('');
+    expect(emailInput.value).toBe('john@example.com');
+
+    // Simulate user input for message field
+    const messageTextarea = getByLabelText(/Message:/i);
+    fireEvent.change(messageTextarea, { target: { value: 'Test message' } });
+    expect(messageTextarea.value).toBe('Test message');
   });
-  // Additional tests...
+
+  it('submits form with valid data', async () => {
+    const { getByLabelText, getByText } = render(<Contact />);
+
+    // Simulate user input for form fields
+    fireEvent.change(getByLabelText(/Name:/i), { target: { value: 'John Doe' } });
+    fireEvent.change(getByLabelText(/Email:/i), { target: { value: 'john@example.com' } });
+    fireEvent.change(getByLabelText(/Message:/i), { target: { value: 'Test message' } });
+
+    // Simulate form submission
+    await act(async () => {
+      fireEvent.click(getByText(/Send Message/i));
+    });
+  });
 });

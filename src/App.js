@@ -1,5 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import About from "./components/About";
 import Service from "./components/Service";
@@ -9,8 +9,8 @@ import Banner from "./components/Banner";
 import Auth from "./components/Auth";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
-import ForgotPasswordForm from "./components/ForgotPasswordForm";
 import ResetPasswordForm from "./components/ResetPasswordForm";
+import { ModalProvider } from "./components/ModalContext";
 
 function App() {
   const [userFirstName, setUserFirstName] = useState("");
@@ -32,22 +32,23 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Navigation userFirstName={userFirstName} cartItems={cartItems} removeFromCart={removeFromCart} />
-        <Routes>
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/gallery" element={<Gallery addToCart={addToCart} />} />
-          <Route path="/gallery/:category" element={<Gallery addToCart={addToCart} />} />
-          <Route path="/auth" element={<Auth setUserFirstName={setUserFirstName} />} />
-          <Route path="/forgot-password" element={<ForgotPasswordForm />} />
-          <Route path="/api/auth/reset-password" element={<ResetPasswordForm />} />
-          <Route path="/" element={<Main />} />
-        </Routes>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <ModalProvider>
+      <BrowserRouter>
+        <div className="App">
+          <Navigation userFirstName={userFirstName} cartItems={cartItems} removeFromCart={removeFromCart} />
+          <Auth setUserFirstName={setUserFirstName} />
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/gallery" element={<Gallery addToCart={addToCart} />} />
+            <Route path="/gallery/:category" element={<Gallery/>} />
+            <Route path="/" element={<Main />} />
+            <Route path="/api/auth/reset-password" element={<ResetPasswordForm />} />
+          </Routes>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </ModalProvider>
   );
 }
 

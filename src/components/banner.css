@@ -1,14 +1,13 @@
 .banner-container {
   position: relative;
-  height: 40vh; /* Adjusted height to 40% of the viewport height */
+  height: 40vh;
   overflow: hidden;
-  margin: 5vh auto; /* Adjusted margin to 5% of the viewport height on top and bottom */
-  padding: 5vw; /* Adjusted padding to 5% of the viewport width */
+  padding: 5vw;
 }
 
 .banner-video {
   position: absolute;
-  top: -80%; /* Adjusted top value to pull the video content up */
+  top: -80%; 
   left: 0;
   width: 100%;
   height: auto;
@@ -19,15 +18,15 @@
 .banner-text {
   position: absolute;
   bottom: -5%;
-  left: 5%; /* Adjusted left position */
+  left: 5%;
   transform: translateY(-90%);
-  z-index: 3; /* Ensure text appears above video */
+  z-index: 3;
 }
 
 .banner-text h2 {
   font-size: 3em;
   margin: 0;
-  color: white; /* Set text color to white */
+  color: white;
 }
 
 .glow-text {
@@ -56,34 +55,32 @@
 
 @media screen and (max-width: 3000px) {
   .banner-container {
-    height: 20vh; 
-    padding: 15vw; 
+    height: 20vh;
+    padding: 15vw;
   }
 
   .banner-video {
-    top: -60%; 
+    top: -60%;
   }
 
   .banner-text h2 {
-    font-size: 2em; 
+    font-size: 2em;
   }
-  
 }
 
 @media screen and (max-width: 670px) {
   .banner-container {
-    height: 10vh; 
-    padding: 15vw; 
+    height: 10vh;
+    padding: 15vw;
   }
 
   .banner-video {
-    top: -60%; 
+    top: -60%;
   }
 
   .banner-text h2 {
-    font-size: 1em; 
+    font-size: 1em;
   }
-  
 }
 
 
