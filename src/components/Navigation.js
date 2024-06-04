@@ -69,8 +69,8 @@ function Navigation({ userFirstName, cartItems, removeFromCart }) {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/gallery" className="nav-link" onClick={toggleMenu}>
-                            Gallery
+                        <Link to="/shop" className="nav-link" onClick={toggleMenu}>
+                            Shop
                         </Link>
                     </li>
                     <li className="nav-item">

@@ -10,7 +10,7 @@
     justify-content: center;
     z-index: 1000;
   }
-  
+
   .modal-content {
     position: relative;
     background: transparent;
@@ -19,14 +19,13 @@
     max-width: 500px;
     width: 100%;
   }
-  
+
   .close-button {
     position: absolute;
-    top: 10px;
+    top: 0;
     right: 10px;
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
   }
-  

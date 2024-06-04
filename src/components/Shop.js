@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import "./gallery.css";
+import "./shop.css";
 
-function Gallery({ addToCart }) {
+function Shop({ addToCart }) {
   const { category } = useParams();
   const [selectedCategory, setSelectedCategory] = useState("Wedding Rings");
   const [products, setProducts] = useState([]);
@@ -92,4 +92,4 @@ function Gallery({ addToCart }) {
   );
 }
 
-export default Gallery;
+export default Shop;
