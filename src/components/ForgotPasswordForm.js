@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 import Modal from "./Modal";
 import { ModalContext } from "./ModalContext";
 import "./Auth.css";
@@ -17,11 +18,11 @@ function ForgotPasswordForm() {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:1337/api/auth/forgot-password", { email });
+      await firebase.auth().sendPasswordResetEmail(email);
       setMessage("Password reset email sent. Please check your inbox.");
       setError("");
     } catch (error) {
-      console.error('Error Response:', error.response?.data);
+      console.error("Error:", error);
       setMessage("");
       setError("Failed to send password reset email. Please try again later.");
     }

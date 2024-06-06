@@ -13,10 +13,10 @@ const ShoppingCart = forwardRef(({ isOpen, toggleCart, cartItems, removeFromCart
                 {cartItems.length > 0 ? (
                     cartItems.map((item, index) => (
                         <div key={index} className="cart-item">
-                            <img src={`http://localhost:1337${item.attributes.Image.data[0].attributes.url}`} alt={item.attributes.Title} />
+                            <img src={item.image} alt={item.title} />
                             <div className="cart-item-details">
-                                <h5>{item.attributes.Title}</h5>
-                                <p>${item.attributes.Price}</p>
+                                <h5>{item.title}</h5>
+                                <p>${item.price}</p>
                             </div>
                             <button className="remove-item" onClick={() => removeFromCart(index)}><FaTimes /></button>
                         </div>

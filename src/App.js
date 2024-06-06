@@ -10,6 +10,8 @@ import Footer from "./components/Footer";
 import ResetPasswordForm from "./components/ResetPasswordForm";
 import Main from "./components/HomePage";
 import { ModalProvider } from "./components/ModalContext";
+import "firebase/compat/auth";
+import { db } from "./FireBaseConfig";
 
 function App() {
   const [userFirstName, setUserFirstName] = useState("");
@@ -17,7 +19,9 @@ function App() {
 
   useEffect(() => {
     const firstName = localStorage.getItem('firstName');
-    if (firstName) {
+    const userLoggedIn = localStorage.getItem('userLoggedIn');
+
+    if (firstName && userLoggedIn) {
       setUserFirstName(firstName);
     }
   }, []);
@@ -34,12 +38,12 @@ function App() {
     <ModalProvider>
       <BrowserRouter>
         <div className="App">
-          <Navigation userFirstName={userFirstName} cartItems={cartItems} removeFromCart={removeFromCart} />
+          <Navigation userFirstName={userFirstName} setUserFirstName={setUserFirstName} cartItems={cartItems} removeFromCart={removeFromCart} />
           <Auth setUserFirstName={setUserFirstName} />
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Main />} />
-              <Route path="/shop" element={<Shop addToCart={addToCart} />} />
+              <Route path="/shop/:category" element={<Shop addToCart={addToCart} db={db} />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<About />} />
               <Route path="/api/auth/reset-password" element={<ResetPasswordForm />} />

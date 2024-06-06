@@ -1,17 +1,31 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { FaUser, FaShoppingCart } from "react-icons/fa";
+import { FaUser, FaShoppingCart, FaAngleDown } from "react-icons/fa";
 import logo from "../logos/Asset 2@3x.png";
 import ShoppingCart from "./ShoppingCart";
 import "./navigation.css";
 import { ModalContext } from './ModalContext';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
-function Navigation({ userFirstName, cartItems, removeFromCart }) {
+function Navigation({ userFirstName, setUserFirstName, cartItems, removeFromCart }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
     const { openModal } = useContext(ModalContext);
     const cartRef = useRef(null);
+
+    const handleLogout = () => {
+        console.log("Logging out...");
+        firebase.auth().signOut().then(() => {
+            console.log("User signed out successfully");
+            localStorage.removeItem('userLoggedIn');
+            localStorage.removeItem('firstName');
+            setUserFirstName("");
+        }).catch((error) => {
+            console.error("Error signing out:", error);
+        });
+    };
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -23,12 +37,6 @@ function Navigation({ userFirstName, cartItems, removeFromCart }) {
 
     const toggleCart = () => {
         setIsCartOpen(!isCartOpen);
-    };
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('firstName');
-        window.location.reload();
     };
 
     const handleClickOutside = (event) => {
@@ -52,7 +60,9 @@ function Navigation({ userFirstName, cartItems, removeFromCart }) {
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-                <img src={logo} alt="Company Logo" />
+            <Link to="/">
+                    <img src={logo} alt="Company Logo" />
+                </Link>
             </div>
 
             <button className="navbar-collapse-button" onClick={toggleMenu}>
@@ -87,22 +97,22 @@ function Navigation({ userFirstName, cartItems, removeFromCart }) {
             </div>
 
             <div className="navbar-icons">
-                <div className="nav-dropdown">
-                    {userFirstName ? (
-                        <button className="nav-dropdown-button" onClick={toggleUserMenu}>
-                            {`Hello, ${userFirstName} \u25BC`}
-                        </button>
-                    ) : (
-                        <Link to="#" className="nav-link" onClick={openModal}>
-                            <FaUser />
-                        </Link>
-                    )}
-                    {isUserMenuOpen && (
-                        <div className="nav-dropdown-content">
-                            {userFirstName && <Link to="#" onClick={handleLogout}>Logout</Link>}
-                        </div>
-                    )}
-                </div>
+                {userFirstName ? (
+                    <div className="nav-dropdown">
+                        <span className="username-text" onClick={toggleUserMenu}>
+                            Hello, {userFirstName} <FaAngleDown className="arrow-icon" />
+                        </span>
+                        {isUserMenuOpen && (
+                            <div className="nav-dropdown-content">
+                                <Link to="#" onClick={handleLogout}>Logout</Link>
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <Link to="#" className="nav-link" onClick={openModal}>
+                        <FaUser />
+                    </Link>
+                )}
                 <Link to="#" className="nav-link" onClick={toggleCart}>
                     <FaShoppingCart />
                 </Link>

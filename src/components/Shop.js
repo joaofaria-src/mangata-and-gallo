@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
+import { collection, getDocs } from "firebase/firestore";
 import "./shop.css";
 
-function Shop({ addToCart }) {
+function Shop({ addToCart, db }) {
   const { category } = useParams();
   const [selectedCategory, setSelectedCategory] = useState("Wedding Rings");
   const [products, setProducts] = useState([]);
   const [hoveredProduct, setHoveredProduct] = useState(null);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(`http://localhost:1337/api/products?populate=Image`);
-        setProducts(response.data.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
 
   useEffect(() => {
     if (category) {
@@ -28,7 +15,35 @@ function Shop({ addToCart }) {
     }
   }, [category]);
 
-  const filteredProducts = products.filter(product => product.attributes.Category === selectedCategory);
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const productsCol = collection(db, "products");
+        const snapshot = await getDocs(productsCol);
+
+        if (snapshot.empty) {
+          console.log("No products found");
+          return;
+        }
+
+        const productsData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        console.log("Fetched products:", productsData);
+        setProducts(productsData);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    }
+
+    fetchProducts();
+  }, [selectedCategory, db]);
+
+  const filteredProducts = products.filter(product => product.category === selectedCategory);
+
+  console.log("Selected category:", selectedCategory);
+  console.log("Filtered products:", filteredProducts);
 
   return (
     <div className="container">
@@ -68,15 +83,15 @@ function Shop({ addToCart }) {
               <figure className="product-image">
                 <a href="#!">
                   <img
-                    src={`http://localhost:1337${product.attributes.Image.data[0].attributes.url}`}
-                    alt={product.attributes.Title}
+                    src={product.image}
+                    alt={product.title}
                   />
                 </a>
               </figure>
               <div className="product-meta">
-                <h3 className="product-title"><a href="#!">{product.attributes.Title}</a></h3>
+                <h3 className="product-title"><a href="#!">{product.title}</a></h3>
                 <div className="product-price">
-                  <span>${product.attributes.Price}</span>
+                  <span>${product.price}</span>
                   {hoveredProduct === product && (
                     <span className="product-action">
                       <a href="#!" className="add-to-cart" onClick={() => addToCart(product)}>Add to cart</a>

@@ -25,6 +25,11 @@
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 20px;
     padding-left: 10px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .category-menu ul {
@@ -63,6 +68,17 @@
       flex: 1 1 50%;
       max-width: 50%;
     }
+    .category-menu {
+      padding-left: 0;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .category-menu li {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
   }
 
   @media (min-width: 992px) {
@@ -70,7 +86,6 @@
       flex: 1 1 33.33%;
       max-width: 33.33%;
     }
-
   }
 
   .product {

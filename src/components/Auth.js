@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import axios from "axios";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 import Modal from "./Modal";
 import { ModalContext } from "./ModalContext";
 import ForgotPasswordForm from "./ForgotPasswordForm";
@@ -22,6 +23,12 @@ function Auth({ setUserFirstName }) {
   useEffect(() => {
     if (!isModalOpen) {
       setShowForgotPassword(false);
+    }
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      setLoginSuccess(false);
     }
   }, [isModalOpen]);
 
@@ -67,21 +74,20 @@ function Auth({ setUserFirstName }) {
     if (!validateForm()) return;
 
     try {
-      const url = formData.isLogin
-        ? "http://localhost:1337/api/auth/local"
-        : "http://localhost:1337/api/auth/local/register";
+      const auth = firebase.auth();
+      const { email, password, username, isLogin } = formData;
 
-      const payload = formData.isLogin
-        ? { identifier: formData.email, password: formData.password }
-        : { email: formData.email, password: formData.password, username: formData.username };
+      if (isLogin) {
+        await auth.signInWithEmailAndPassword(email, password);
+      } else {
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        await userCredential.user.updateProfile({ displayName: username });
+      }
 
-      const response = await axios.post(url, payload);
+      localStorage.setItem('userLoggedIn', true);
+      localStorage.setItem('firstName', auth.currentUser.displayName);
 
-      const data = response.data;
-
-      localStorage.setItem('token', data.jwt);
-      localStorage.setItem('username', data.user.username);
-      setUserFirstName(data.user.username);
+      setUserFirstName(auth.currentUser.displayName);
       setLoginSuccess(true);
 
       setFormData(prevData => ({
@@ -93,18 +99,12 @@ function Auth({ setUserFirstName }) {
       }));
       setErrors({});
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.error) {
-        const errorMessage = error.response.data.error.message;
+      console.error("Authentication error:", error);
 
-        if (formData.isLogin) {
-          if (errorMessage === "Invalid identifier or password") {
-            setErrors({ password: "Incorrect e-mail or password" });
-          }
-        } else {
-          if (errorMessage === "Email or Username are already taken") {
-            setErrors({ email: "Email already exists", username: "Username already exists" });
-          }
-        }
+      if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
+        setErrors({ password: "Incorrect email or password" });
+      } else if (error.code === "auth/email-already-in-use") {
+        setErrors({ email: "Email already exists" });
       } else {
         setErrors({ server: "Server error. Please try again later." });
       }
