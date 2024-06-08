@@ -43,6 +43,7 @@ function App() {
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Main />} />
+              <Route path="/shop" element={<Shop addToCart={addToCart} db={db} />} />
               <Route path="/shop/:category" element={<Shop addToCart={addToCart} db={db} />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<About />} />
